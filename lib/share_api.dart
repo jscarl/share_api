@@ -3,6 +3,8 @@ import 'package:share_api/intents/facebook.dart';
 import 'package:share_api/intents/instagram.dart';
 import 'package:share_api/intents/system.dart';
 
+export './composers/story_composer.dart';
+
 class ShareApi {
   static const channel_name = 'com.albertalrisa.flutter.plugins/share_api';
 
