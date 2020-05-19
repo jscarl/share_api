@@ -1,6 +1,9 @@
 package com.albertalrisa.flutter.plugins.shareapi.intents
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import androidx.core.content.FileProvider
 import com.albertalrisa.flutter.plugins.shareapi.requests.SYSTEMUI_SHARE_FILE
@@ -71,6 +74,12 @@ class SystemUI(authority_name: String, registrar: Registrar, activity: Activity)
             val exception = IllegalArgumentException(exceptionMessage)
             result.error("IllegalArgumentException", exceptionMessage, exception)
             throw exception
+        }
+
+        if(text != null) {
+            val clipboard  = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip: ClipData = ClipData.newPlainText("content", text)
+            clipboard.primaryClip = clip
         }
 
         val imageFile = File(registrar.context().cacheDir, image)
